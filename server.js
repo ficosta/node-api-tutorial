@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-
+const requireDir = require('require-dir')
 //Iniciano o App
 const app = express()
 
@@ -10,10 +10,15 @@ mongoose.connect(
     {useNewUrlParser: true, useUnifiedTopology: true }
 )
 
-require('./src/models/Product');
-
+requireDir('./src/models');
+const Product = mongoose.model('Product')
 
 app.get('/', (req, res) => {
+    Product.create({
+        title: 'React Native',
+        description:'Build a native',
+        url:'www.hoo.com',
+    })
     res.send('Rocket')
 })
 app.listen(3001, () => console.log(`Example app listening on {port} port!`))
