@@ -10,6 +10,8 @@ mongoose.connect(
     {useNewUrlParser: true, useUnifiedTopology: true }
 )
 
+require('./src/models/Product');
+
 
 app.get('/', (req, res) => {
     res.send('Rocket')
